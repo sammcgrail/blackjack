@@ -31,6 +31,10 @@ class Deck
   def shuffle
     @deck = @deck.shuffle
   end
+
+  def deal
+    @deck.shift
+  end
 end
 
 class Hand
