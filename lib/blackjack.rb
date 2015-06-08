@@ -75,6 +75,7 @@ class Hand
         else
           score += 1
         aces -=1
+        end
       end
       #--------------------------
     else
