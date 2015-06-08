@@ -29,7 +29,7 @@ class Deck
   end
 
   def shuffle
-    @deck.shuffle!
+    @deck = @deck.shuffle
   end
 end
 

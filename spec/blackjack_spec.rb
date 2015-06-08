@@ -3,34 +3,33 @@ require_relative "../lib/blackjack"
 
 describe Card do
   it 'has a suit and value' do
-    testcard = Card.new("♥","Q")
-    expect(testcard.suit).to eq("♥")
-    expect(testcard.value).to eq("Q")
+    test_card = Card.new("♥","Q")
+    expect(test_card.suit).to eq("♥")
+    expect(test_card.value).to eq("Q")
   end
 
   it 'has a suit and value' do
-    testcard = Card.new("♣","6")
-    expect(testcard.suit).to eq("♣")
-    expect(testcard.value).to eq("6")
+    test_card = Card.new("♣","6")
+    expect(test_card.suit).to eq("♣")
+    expect(test_card.value).to eq("6")
   end
 end
 
 describe Deck do
   describe "#initialize" do
     it 'has 52 card objects' do
-      testdeck = Deck.new()
-      expect(testdeck.deck_size).to eq(52)
-      # expect(testdeck.).to eq(52)
+      test_deck = Deck.new()
+      expect(test_deck.deck_size).to eq(52)
+      # expect(test_deck.).to eq(52)
     end
   end
   describe "#shuffle" do
     it 'shuffles the deck' do
-      testdeck = Deck.new()
-      suit = testdeck.deck[0].suit
-      value = testdeck.deck[0].value
-      testdeck.shuffle
-      expect(testdeck.deck[0].suit).not_to eq(suit)
-      expect(testdeck.deck[0].value).not_to eq(value)
+      test_deck = Deck.new()
+      test_cards = test_deck.deck
+      expect(test_deck.deck).to eq(test_cards)
+      test_deck.shuffle
+      expect(test_deck.deck).not_to eq(test_cards)
     end
   end
 end
@@ -38,8 +37,8 @@ end
 
 # describe Hand do
 #   it 'has 2 card objects' do
-#     testdeck = Deck.new()
-#     expect(testdeck.deck_size).to eq(52)
-#     # expect(testdeck.).to eq(52)
+#     test_deck = Deck.new()
+#     expect(test_deck.deck_size).to eq(52)
+#     # expect(test_deck.).to eq(52)
 #   end
 # end
