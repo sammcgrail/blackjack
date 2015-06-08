@@ -6,13 +6,26 @@ require_relative 'hand'
 
 puts "Welcome to blackjack!\n\n"
 
+#create objects
 @dealer = Hand.new
 @player = Hand.new
-
 @players = {'Player' => @player, 'Dealer' => @dealer}
-
 @deck = Deck.new
 
+#deal cards to @players one at a time
+def deal
+  count = 0
+  @deck.shuffle
+  while count < (@players.length)*2
+    @players.each do |player_name,hand|
+      card = @deck.deal
+      hand.hand << card
+      card_dealt(player_name, card.suit + "" + card.value)
+      player_score(player_name)
+      count +=1
+    end
+  end
+end
 
 def card_dealt(player_name, card)
   puts "#{player_name} was dealt: #{card}\n"
@@ -54,6 +67,7 @@ def get_dealer_choice
   @dealer.score
 end
 
+# determine if player has gone over 21, if not, go to dealer
 def settle_score(player_score)
   if player_score > 21
     puts "Dealer wins!"
@@ -71,31 +85,10 @@ def settle_score(player_score)
       puts "Player wins!"
     end
 
-
   end
 end
 
-
-#deal cards to @players one at a time
-def deal
-  count = 0
-  @deck.shuffle
-  while count < (@players.length)*2
-    @players.each do |player_name,hand|
-      card = @deck.deal
-      hand.hand << card
-      card_dealt(player_name, card.suit + "" + card.value)
-      player_score(player_name)
-      count +=1
-    end
-  end
-end
-
+#run program
 deal
 player_score = get_player_choice
 settle_score(player_score)
-# puts dealer_score = get_dealer_choice
-
-
-# # You win!
-# # Bust! You lose...

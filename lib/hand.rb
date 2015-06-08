@@ -19,7 +19,6 @@ class Hand
       end
       #handle @aces----------------
       while @aces > 0
-      #   # binding.pry
         if (@score + 11) <= 21 && @aces < 2
           @score += 11
         else
