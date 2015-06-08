@@ -1,28 +1,29 @@
 #!/usr/bin/env ruby
 
-# YOUR CODE HERE
+puts "Welcome to blackjack!"
 
  SUITS = %w[♦ ♣ ♠ ♥]
  VALUES = %w[2 3 4 5 6 7 8 9 10 J Q K A]
 
 class Card
   attr_reader :suit, :value
+
   def initialize(suit, value)
     @suit = suit
     @value = value
     @point = 0
   end
+
   def point
-    if value.class == Fixnum
-      @point = value
-    elsif value == 'A'
-      @point = 'ace'
-    elsif value.class == String
+    if not ['J', 'Q', 'K', 'A'].include? @value
+      @point = @value.to_i
+    elsif not @value == 'A'
       @point = 10
     else
-      puts "sombody messed up"
+      @point = 'ace'
     end
   end
+
 end
 
 class Deck
@@ -50,8 +51,27 @@ class Deck
 end
 
 class Hand
-  attr_accessor :hand
+  attr_accessor :hand, :score
+  attr_reader :points
   def initialize
     @hand = []
+    @score = 0
   end
+
+  def score
+    if @hand.length > 0
+      aces = 0
+      @hand.each do |card|
+        unless card.point == 'ace'
+          @score += card.point
+        else
+          aces +=1
+        end
+      end
+    else
+      "you ain't got a hand"
+    end
+    @score
+  end
+
 end
