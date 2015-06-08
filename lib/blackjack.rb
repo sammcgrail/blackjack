@@ -37,17 +37,26 @@ def player_score(player_name)
   player_score
 end
 
+def eval_player_input
+  puts "Hit or stand (H/S):"
+  player_choice = gets.chomp.to_s.upcase
+  while player_choice != 'H' && player_choice != 'S'
+    puts "Please be more clear...Enter 'H' or 'S'"
+    player_choice = gets.chomp.to_s.upcase
+  end
+  player_choice
+end
+
+
 def get_player_choice
-    puts "Hit or stand (H/S):"
-    player_choice = gets.chomp.to_s
+    player_choice = eval_player_input
     while player_choice == 'H'
       card = @deck.deal
       @player.hand << card
       card_dealt("Player",card.suit + "" + card.value)
       score = player_score("Player")
       if score < 21
-        puts "Hit or stand (H/S):"
-        player_choice = gets.chomp.to_s
+        player_choice = eval_player_input
       else
         return score
       end
@@ -70,7 +79,7 @@ end
 # determine if player has gone over 21, if not, go to dealer
 def settle_score(player_score)
   if player_score > 21
-    puts "Dealer wins!"
+    puts "Bust! Game over..."
   else
     dealer_score = get_dealer_choice
     while dealer_score < 17
@@ -82,7 +91,7 @@ def settle_score(player_score)
     elsif dealer_score == player_score
       puts "Dealer wins!"
     else
-      puts "Player wins!"
+      puts "Bust! You win!"
     end
 
   end
