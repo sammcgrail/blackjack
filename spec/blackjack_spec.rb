@@ -48,11 +48,17 @@ describe Deck do
   end
 end
 
+describe Hand do
+let(:test_deck) {Deck.new}
+let(:test_hand) {Hand.new}
 
-# describe Hand do
-#   it 'has 2 card objects' do
-#     test_deck = Deck.new()
-#     expect(test_deck.deck_size).to eq(52)
-#     # expect(test_deck.).to eq(52)
-#   end
-# end
+  describe "#initialize" do
+    it 'creates an empty hand' do
+      expect(test_hand.hand.length).to eq(0)
+    end
+  desribe "#score" do
+    it 'keeps tally of hand score'
+
+    end
+  end
+end
