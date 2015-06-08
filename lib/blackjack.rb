@@ -59,7 +59,7 @@ def settle_score(player_score)
     puts "Dealer wins!"
   else
     dealer_score = get_dealer_choice
-    while dealer_score <= 17
+    while dealer_score < 17
       dealer_score = get_dealer_choice
     end
 
