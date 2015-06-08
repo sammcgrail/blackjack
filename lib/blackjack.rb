@@ -68,10 +68,18 @@ class Hand
           aces +=1
         end
       end
+      #handle aces----------------
+      while aces > 0
+        if (score + 11) <= 21 && aces < 2
+          score += 11
+        else
+          score += 1
+        aces -=1
+      end
+      #--------------------------
     else
       "you ain't got a hand"
     end
     @score
   end
-
 end
